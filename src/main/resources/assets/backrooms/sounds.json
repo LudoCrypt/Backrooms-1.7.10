@@ -1,0 +1,153 @@
+{
+	"music.game.backrooms.lobby": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "backrooms:music/game/backrooms/backrooms1",
+				"weight": 4,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/backrooms2",
+				"weight": 3,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/backrooms4",
+				"weight": 2,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/backrooms3",
+				"stream": true
+			}
+		]
+	},
+	"music.game.backrooms.maintenance": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "backrooms:music/game/backrooms/maintenance1",
+				"weight": 3,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/maintenance2",
+				"weight": 2,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/maintenance3",
+				"stream": true
+			}
+		]
+	},
+	"music.game.backrooms.pipes": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "backrooms:music/game/backrooms/pipes1",
+				"weight": 4,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/pipes2",
+				"weight": 3,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/pipes3",
+				"weight": 2,
+				"stream": true
+			},
+			{
+				"name": "backrooms:music/game/backrooms/pipes4",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.lobby.bg_on": {
+		"category": "ambient",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/lobby/bg_loop",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.lobby.bg_off": {
+		"category": "ambient",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/lobby/bg_loop_off",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.lobby.rainstorm": {
+		"category": "weather",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/lobby/rainstorm",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.lobby.light_pop": {
+		"category": "ambient",
+		"sounds": [
+			"backrooms:ambience/lobby/light_pop1",
+			"backrooms:ambience/lobby/light_pop2",
+			"backrooms:ambience/lobby/light_pop3",
+			"backrooms:ambience/lobby/light_pop4",
+			"backrooms:ambience/lobby/light_pop5"
+		]
+	},
+	"ambient.game.backrooms.maintenance.bg": {
+		"category": "ambient",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/maintenance/bg_loop",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.concrete.bg": {
+		"category": "ambient",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/concrete/bg_loop",
+				"stream": true
+			}
+		]
+	},
+	"ambient.game.backrooms.concrete.machinery": {
+		"category": "ambient",
+		"sounds": [
+			"backrooms:ambience/concrete/machinery/machine1",
+			"backrooms:ambience/concrete/machinery/machine2",
+			"backrooms:ambience/concrete/machinery/machine3",
+			"backrooms:ambience/concrete/machinery/machine4",
+			"backrooms:ambience/concrete/machinery/machine5",
+			"backrooms:ambience/concrete/machinery/machine6",
+			"backrooms:ambience/concrete/machinery/machine7",
+			"backrooms:ambience/concrete/machinery/machine8",
+			"backrooms:ambience/concrete/machinery/machine9",
+			"backrooms:ambience/concrete/machinery/machine10",
+			"backrooms:ambience/concrete/machinery/machine11",
+			"backrooms:ambience/concrete/machinery/machine12",
+			"backrooms:ambience/concrete/machinery/machine13",
+			"backrooms:ambience/concrete/machinery/machine14",
+			"backrooms:ambience/concrete/machinery/machine15"
+		]
+	},
+	"ambient.game.backrooms.pipes.bg": {
+		"category": "ambient",
+		"sounds": [
+			{
+				"name": "backrooms:ambience/pipes/bg_loop",
+				"stream": true
+			}
+		]
+	}
+}

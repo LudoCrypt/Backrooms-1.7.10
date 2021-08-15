@@ -1,0 +1,31 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "net.ludocrypt.backrooms.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"ChunkWorldSaverMixin",
+		"DimensionMixin",
+		"IdListAccessor",
+		"IntegratedServerMixin",
+		"LivingEntityMixin",
+		"MinecraftClientAccessor",
+		"MinecraftServerMixin",
+		"MusicTrackerAccessor",
+		"PortalTeleporterMixin",
+		"SaveDataMixin",
+		"SimpleRegistryAccessor",
+		"SimplexNoiseSamplerAccessor"
+	],
+	"client": [
+		"DefaultResourcePackMixin",
+		"MinecraftClientMixin",
+		"MusicTrackerMixin",
+		"MusicTypeMixin",
+		"ParticleSpawningMixin",
+		"RenderBlockMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
