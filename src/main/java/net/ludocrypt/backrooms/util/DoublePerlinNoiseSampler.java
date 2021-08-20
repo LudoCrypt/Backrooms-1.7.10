@@ -1,7 +1,7 @@
 package net.ludocrypt.backrooms.util;
 
-import it.unimi.dsi.fastutil.doubles.DoubleList;
-import it.unimi.dsi.fastutil.doubles.DoubleListIterator;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 //Stolen from minecraft code
 public class DoublePerlinNoiseSampler {
@@ -9,20 +9,20 @@ public class DoublePerlinNoiseSampler {
 	private final OctavePerlinNoiseSampler firstSampler;
 	private final OctavePerlinNoiseSampler secondSampler;
 
-	public static DoublePerlinNoiseSampler method_30846(ChunkRandom chunkRandom, int i, DoubleList doubleList) {
+	public static DoublePerlinNoiseSampler method_30846(ChunkRandom chunkRandom, int i, ArrayList<Double> doubleList) {
 		return new DoublePerlinNoiseSampler(chunkRandom, i, doubleList);
 	}
 
-	private DoublePerlinNoiseSampler(ChunkRandom chunkRandom, int i, DoubleList doubleList) {
+	private DoublePerlinNoiseSampler(ChunkRandom chunkRandom, int i, ArrayList<Double> doubleList) {
 		this.firstSampler = OctavePerlinNoiseSampler.method_30847(chunkRandom, i, doubleList);
 		this.secondSampler = OctavePerlinNoiseSampler.method_30847(chunkRandom, i, doubleList);
 		int j = Integer.MAX_VALUE;
 		int k = Integer.MIN_VALUE;
-		DoubleListIterator doubleListIterator = doubleList.iterator();
+		Iterator<Double> doubleListIterator = doubleList.stream().iterator();
 
 		while (doubleListIterator.hasNext()) {
-			int l = doubleListIterator.nextIndex();
-			double d = doubleListIterator.nextDouble();
+			double d = doubleListIterator.next();
+			int l = doubleList.indexOf(d);
 			if (d != 0.0D) {
 				j = Math.min(j, l);
 				k = Math.max(k, l);

@@ -14,7 +14,6 @@ import net.ludocrypt.backrooms.world.TheBackroomsDimension;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)

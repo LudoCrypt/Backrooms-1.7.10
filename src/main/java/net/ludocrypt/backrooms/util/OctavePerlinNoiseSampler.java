@@ -1,25 +1,23 @@
 package net.ludocrypt.backrooms.util;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.Sets;
 
-import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
-import it.unimi.dsi.fastutil.doubles.DoubleList;
-import it.unimi.dsi.fastutil.ints.IntBidirectionalIterator;
-import it.unimi.dsi.fastutil.ints.IntRBTreeSet;
-import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import net.minecraft.util.math.MathHelper;
 
 //Stolen from minecraft code
 public class OctavePerlinNoiseSampler implements NoiseSampler {
 	private final PerlinNoiseSampler[] octaveSamplers;
-	private final DoubleList field_26445;
+	private final ArrayList<Double> field_26445;
 	private final double field_20659;
 	private final double field_20660;
 
@@ -28,41 +26,44 @@ public class OctavePerlinNoiseSampler implements NoiseSampler {
 	}
 
 	public OctavePerlinNoiseSampler(ChunkRandom random, List<Integer> octaves) {
-		this(random, new IntRBTreeSet(octaves));
+		this(random, Sets.newHashSet(octaves));
 	}
 
-	public static OctavePerlinNoiseSampler method_30847(ChunkRandom chunkRandom, int i, DoubleList doubleList) {
-		return new OctavePerlinNoiseSampler(chunkRandom, Pair.of(i, doubleList));
+	public static OctavePerlinNoiseSampler method_30847(ChunkRandom chunkRandom, int i, ArrayList<Double> DoubleArrayList) {
+		return new OctavePerlinNoiseSampler(chunkRandom, Pair.of(i, DoubleArrayList));
 	}
 
-	private static Pair<Integer, DoubleList> method_30848(IntSortedSet intSortedSet) {
+	private static Pair<Integer, ArrayList<Double>> method_30848(Set<Integer> intSortedSet) {
 		if (intSortedSet.isEmpty()) {
 			throw new IllegalArgumentException("Need some octaves!");
 		} else {
-			int i = -intSortedSet.firstInt();
-			int j = intSortedSet.lastInt();
+			int i = -intSortedSet.toArray(new Integer[0])[0];
+			int j = intSortedSet.toArray(new Integer[0])[intSortedSet.size() - 1];
 			int k = i + j + 1;
 			if (k < 1) {
 				throw new IllegalArgumentException("Total number of octaves needs to be >= 1");
 			} else {
-				DoubleList doubleList = new DoubleArrayList(new double[k]);
-				IntBidirectionalIterator intBidirectionalIterator = intSortedSet.iterator();
+				ArrayList<Double> DoubleArrayList = new ArrayList<Double>(k);
+				for (int pi = 0; pi < k; pi++) {
+					DoubleArrayList.add(0.0);
+				}
+				Iterator<Integer> intBidirectionalIterator = intSortedSet.iterator();
 
 				while (intBidirectionalIterator.hasNext()) {
-					int l = intBidirectionalIterator.nextInt();
-					doubleList.set(l + i, 1.0D);
+					int l = intBidirectionalIterator.next();
+					DoubleArrayList.set(l + i, 1.0D);
 				}
 
-				return Pair.of(-i, doubleList);
+				return Pair.of(-i, DoubleArrayList);
 			}
 		}
 	}
 
-	private OctavePerlinNoiseSampler(ChunkRandom random, IntSortedSet octaves) {
+	private OctavePerlinNoiseSampler(ChunkRandom random, Set<Integer> octaves) {
 		this(random, method_30848(octaves));
 	}
 
-	private OctavePerlinNoiseSampler(ChunkRandom chunkRandom, Pair<Integer, DoubleList> pair) {
+	private OctavePerlinNoiseSampler(ChunkRandom chunkRandom, Pair<Integer, ArrayList<Double>> pair) {
 		int i = pair.getFirst();
 		this.field_26445 = pair.getSecond();
 		PerlinNoiseSampler PerlinNoiseSampler = new PerlinNoiseSampler(chunkRandom);
@@ -70,7 +71,7 @@ public class OctavePerlinNoiseSampler implements NoiseSampler {
 		int k = -i;
 		this.octaveSamplers = new PerlinNoiseSampler[j];
 		if (k >= 0 && k < j) {
-			double d = this.field_26445.getDouble(k);
+			double d = this.field_26445.get(k);
 			if (d != 0.0D) {
 				this.octaveSamplers[k] = PerlinNoiseSampler;
 			}
@@ -78,7 +79,7 @@ public class OctavePerlinNoiseSampler implements NoiseSampler {
 
 		for (int l = k - 1; l >= 0; --l) {
 			if (l < j) {
-				double e = this.field_26445.getDouble(l);
+				double e = this.field_26445.get(l);
 				if (e != 0.0D) {
 					this.octaveSamplers[l] = new PerlinNoiseSampler(chunkRandom);
 				} else {
@@ -95,7 +96,7 @@ public class OctavePerlinNoiseSampler implements NoiseSampler {
 
 			for (int n = k + 1; n < j; ++n) {
 				if (n >= 0) {
-					double f = this.field_26445.getDouble(n);
+					double f = this.field_26445.get(n);
 					if (f != 0.0D) {
 						this.octaveSamplers[n] = new PerlinNoiseSampler(chunkRandom2);
 					} else {
@@ -123,7 +124,7 @@ public class OctavePerlinNoiseSampler implements NoiseSampler {
 		for (int i = 0; i < this.octaveSamplers.length; ++i) {
 			PerlinNoiseSampler PerlinNoiseSampler = this.octaveSamplers[i];
 			if (PerlinNoiseSampler != null) {
-				f += this.field_26445.getDouble(i) * PerlinNoiseSampler.sample(maintainPrecision(x * g), bl ? -PerlinNoiseSampler.originY : maintainPrecision(y * g), maintainPrecision(z * g), d * g, e * g) * h;
+				f += this.field_26445.get(i) * PerlinNoiseSampler.sample(maintainPrecision(x * g), bl ? -PerlinNoiseSampler.originY : maintainPrecision(y * g), maintainPrecision(z * g), d * g, e * g) * h;
 			}
 
 			g *= 2.0D;

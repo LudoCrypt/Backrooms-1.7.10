@@ -1,5 +1,6 @@
 package net.ludocrypt.backrooms.world.biome;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -11,8 +12,6 @@ import java.util.function.Supplier;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
-import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
-import it.unimi.dsi.fastutil.doubles.DoubleList;
 import net.ludocrypt.backrooms.util.ChunkRandom;
 import net.ludocrypt.backrooms.util.DoublePerlinNoiseSampler;
 import net.ludocrypt.backrooms.util.Pair;
@@ -137,18 +136,21 @@ public class MultiNoiseBiomeSource extends LayeredBiomeSource {
 
 	public static class NoiseParameters {
 		public final int firstOctave;
-		public final DoubleList amplitudes;
+		public final ArrayList<Double> amplitudes;
 
 		public NoiseParameters(int firstOctave, List<Double> amplitudes) {
 			this.firstOctave = firstOctave;
-			this.amplitudes = new DoubleArrayList(amplitudes);
+			this.amplitudes = new ArrayList<Double>(amplitudes.size());
+			for (int i = 0; i < amplitudes.size(); i++) {
+				this.amplitudes.add(amplitudes.get(i));
+			}
 		}
 
 		public int getFirstOctave() {
 			return this.firstOctave;
 		}
 
-		public DoubleList getAmplitudes() {
+		public ArrayList<Double> getAmplitudes() {
 			return this.amplitudes;
 		}
 	}
